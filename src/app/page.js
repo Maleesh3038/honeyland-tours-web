@@ -1,5 +1,6 @@
 "use client";
 
+
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -8,39 +9,101 @@ export default function Home() {
   // Mobile nav state
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Updated Image Paths matching your exact public folder structure to fix 404s
-  const destinations = [
+  // Form submission states
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitResult, setSubmitResult] = useState({ success: null, message: "" });
+
+  // Form submit handler for Web3Forms
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitResult({ success: null, message: "" });
+
+    const formData = new FormData(e.target);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitResult({
+          success: true,
+          message: "Thank you! Your message has been sent successfully. We will get back to you soon."
+        });
+        e.target.reset();
+      } else {
+        setSubmitResult({
+          success: false,
+          message: data.message || "Something went wrong. Please try again."
+        });
+      }
+    } catch (error) {
+      setSubmitResult({
+        success: false,
+        message: "Network error. Please check your connection and try again."
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // The 7 Experience Categories matching folder structure
+  const experiences = [
     {
       id: 1,
-      title: "Sigiriya Rock Fortress",
-      tagline: "The Ancient 8th Wonder of the World",
-      coverImage: "/sigiriya-cover.jpg",
-      slug: "sigiriya"
+      title: "Golden Beaches & Surfing",
+      tagline: "Sun-kissed coasts and world-class waves",
+      coverImage: "/beaches-cover.jpg",
+      slug: "beaches-surfing"
     },
     {
       id: 2,
-      title: "Sacred City of Kandy",
-      tagline: "The Majestic Hill Capital of Culture",
-      coverImage: "/kandy-cover.jpg",
-      slug: "kandy"
+      title: "Cultural & Historical Heritage",
+      tagline: "Journey through 2500+ years of ancient majesty",
+      coverImage: "/culture-cover.jpg",
+      slug: "culture-heritage"
     },
     {
       id: 3,
-      title: "Ella & Nine Arch Bridge",
-      tagline: "Misty Mountains & Scenic Railways",
-      coverImage: "/ella-cover.jpg",
-      slug: "ella"
+      title: "Wildlife Safari & Nature",
+      tagline: "Meet the giants of the wild in their natural habitat",
+      coverImage: "/wildlife-cover.jpg",
+      slug: "wildlife-nature"
     },
     {
       id: 4,
-      title: "Galle Dutch Fort",
-      tagline: "Colonial Charm Meet Golden Coastlines",
-      coverImage: "/galle-cover.jpg",
-      slug: "galle"
+      title: "Misty Mountains & Tea Plantations",
+      tagline: "Breathtaking viewpoints, waterfalls, and lush tea trails",
+      coverImage: "/mountains-cover.jpg",
+      slug: "mountains-tea"
+    },
+    {
+      id: 5,
+      title: "Authentic Sri Lankan Food Experiences",
+      tagline: "Taste the rich spices and traditional flavors of paradise",
+      coverImage: "/food-cover.jpg",
+      slug: "food-experiences"
+    },
+    {
+      id: 6,
+      title: "Adventure & Wellness",
+      tagline: "Thrilling hikes meets peaceful Ayurveda rejuvenation",
+      coverImage: "/adventure-cover.jpg",
+      slug: "adventure-wellness"
+    },
+    {
+      id: 7,
+      title: "Nightlife & Beach Parties",
+      tagline: "Dance under the stars at the best coastal hotspots",
+      coverImage: "/nightlife-cover.jpg",
+      slug: "nightlife-parties"
     }
   ];
 
-  // All 6 Verified TripAdvisor Reviews included
   const reviews = [
     {
       id: 1,
@@ -111,7 +174,7 @@ export default function Home() {
         <span>💬 Chat With Us</span>
       </a>
 
-      {/* Hero Section with Fixed Photo - Pointing to existing sigiriya-cover.jpg to avoid 404 */}
+      {/* Hero Section */}
       <div id="home" className="relative w-full min-h-[85vh] flex flex-col justify-between overflow-hidden bg-[#1A1512]">
         <Image
           src="/sigiriya-cover.jpg" 
@@ -120,7 +183,6 @@ export default function Home() {
           priority
           className="object-cover opacity-60 z-0"
         />
-        {/* Fixed CSS Gradient to remove Tailwind v4 warning */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-[#FDFCF7] z-10" />
 
         {/* Navigation Bar */}
@@ -133,9 +195,9 @@ export default function Home() {
             {/* Desktop Menu */}
             <div className="hidden md:flex gap-8 text-sm font-semibold text-white">
               <a href="#home" className="hover:text-[#F3D798]">Home</a>
-              <a href="#destinations" className="hover:text-[#F3D798]">Tours</a>
+              <a href="#destinations" className="hover:text-[#F3D798]">Experiences</a>
               <a href="#reviews" className="hover:text-[#F3D798]">Reviews</a>
-              <a href="#contact" className="hover:text-[#F3D798]">Contact</a>
+              <a href="#contact-section" className="hover:text-[#F3D798]">Contact</a>
             </div>
 
             <div className="hidden md:block">
@@ -149,7 +211,7 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Hamburger Button (Mobile Only) */}
+            {/* Hamburger Button */}
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="md:hidden text-white focus:outline-none p-1"
@@ -171,9 +233,9 @@ export default function Home() {
           {isMenuOpen && (
             <div className="md:hidden absolute top-full left-0 w-full bg-[#1A1512]/95 backdrop-blur-lg border-b border-white/10 py-6 px-6 flex flex-col gap-4">
               <a href="#home" onClick={() => setIsMenuOpen(false)} className="text-white hover:text-[#F3D798] text-base font-semibold">Home</a>
-              <a href="#destinations" onClick={() => setIsMenuOpen(false)} className="text-white hover:text-[#F3D798] text-base font-semibold">Tours</a>
+              <a href="#destinations" onClick={() => setIsMenuOpen(false)} className="text-white hover:text-[#F3D798] text-base font-semibold">Experiences</a>
               <a href="#reviews" onClick={() => setIsMenuOpen(false)} className="text-white hover:text-[#F3D798] text-base font-semibold">Reviews</a>
-              <a href="#contact" onClick={() => setIsMenuOpen(false)} className="text-white hover:text-[#F3D798] text-base font-semibold">Contact</a>
+              <a href="#contact-section" onClick={() => setIsMenuOpen(false)} className="text-white hover:text-[#F3D798] text-base font-semibold">Contact</a>
               <a
                 href="https://wa.me/94777721144"
                 target="_blank"
@@ -198,40 +260,39 @@ export default function Home() {
             Discover paradise through the eyes of trusted local experts. Tailored island-wide private tours starting from Naula.
           </p>
           <a href="#destinations" className="bg-[#C19A5B] text-white font-bold px-6 py-3 rounded-full inline-block">
-            Explore Destinations ➔
+            Explore Experiences ➔
           </a>
         </div>
       </div>
 
-      {/* Destinations Cards Section */}
+      {/* Experiences Cards Section */}
       <div id="destinations" className="max-w-6xl mx-auto py-20 px-6 scroll-mt-10">
         <div className="text-center mb-12">
           <span className="text-[#C19A5B] text-xs font-bold uppercase tracking-widest block mb-2">Beautiful Pearl of the Indian Ocean</span>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#2D2A22]">Top Destinations We Cover</h2>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#2D2A22]">Select Your Travel Style</h2>
           <div className="w-12 h-0.5 bg-[#C19A5B] mx-auto mt-4"></div>
         </div>
 
-        {/* Grid Container with Next.js <Image /> tags to fix LCP/Performance warnings */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {destinations.map((dest) => (
-            <div key={dest.id} className="bg-white rounded-2xl overflow-hidden border border-[#EFECE3] shadow-sm flex flex-col justify-between p-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {experiences.map((exp) => (
+            <div key={exp.id} className="bg-white rounded-2xl overflow-hidden border border-[#EFECE3] shadow-sm flex flex-col justify-between p-3">
               <div className="relative w-full h-48 rounded-xl overflow-hidden bg-gray-100">
                 <Image 
-                  src={dest.coverImage} 
-                  alt={dest.title} 
+                  src={exp.coverImage} 
+                  alt={exp.title} 
                   fill
-                  sizes="(max-w-768px) 100vw, 25vw"
+                  sizes="(max-w-768px) 100vw, 33vw"
                   className="object-cover" 
                 />
               </div>
               <div className="pt-4 pb-2 px-2 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-bold text-lg text-[#2D2A22] mb-1">{dest.title}</h3>
-                  <p className="text-[10px] text-[#C19A5B] font-bold uppercase tracking-wide mb-4">{dest.tagline}</p>
+                  <h3 className="font-bold text-lg text-[#2D2A22] mb-1">{exp.title}</h3>
+                  <p className="text-[10px] text-[#C19A5B] font-bold uppercase tracking-wide mb-4">{exp.tagline}</p>
                 </div>
                 
                 <Link 
-                  href={`/destinations/${dest.slug}`}
+                  href={`/destinations/${exp.slug}`}
                   className="w-full bg-[#FAF6EC] hover:bg-[#C19A5B] text-[#7C5E28] hover:text-white font-bold py-2.5 rounded-xl text-xs transition-colors border border-[#EFECE3] block text-center cursor-pointer"
                 >
                   👁️ View Details & Gallery
@@ -253,9 +314,9 @@ export default function Home() {
           {reviews.map((review) => (
             <div key={review.id} className="bg-white p-6 rounded-2xl border border-[#EFECE3] shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
               <div>
-                <div className="text-[#00AFEF] text-xs font-bold mb-2">⭐⭐⭐⭐⭐• 5.0 Excellent</div>
-                <h4 className="font-bold text-sm text-[#2D2A22] mb-1">&quot;{review.title}&quot;</h4>
-                <p className="text-xs md:text-sm text-[#666053] italic leading-relaxed mb-4">&quot;{review.text}&quot;</p>
+                <div className="text-[#00AFEF] text-xs font-bold mb-2">⭐⭐⭐⭐• 5.0 Excellent</div>
+                <h4 className="font-bold text-sm text-[#2D2A22] mb-1">{"\""}{review.title}{"\""}</h4>
+                <p className="text-xs md:text-sm text-[#666053] italic leading-relaxed mb-4">{"\""}{review.text}{"\""}</p>
               </div>
               <div className="pt-3 border-t border-[#F4F1EA] flex justify-between items-center">
                 <div>
@@ -269,6 +330,79 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Contact Form Section */}
+      <div id="contact-section" className="max-w-3xl mx-auto py-16 px-6 scroll-mt-20 border-t border-[#EFECE3]">
+        <div className="text-center mb-10">
+          <span className="text-[#C19A5B] text-xs font-bold uppercase tracking-widest block mb-2">Plan Your Dream Trip</span>
+          <h2 className="text-3xl font-serif font-bold text-[#2D2A22]">Get In Touch With Us</h2>
+          <div className="w-12 h-0.5 bg-[#C19A5B] mx-auto mt-4"></div>
+        </div>
+
+        <form onSubmit={handleFormSubmit} className="bg-white p-8 rounded-2xl border border-[#EFECE3] shadow-sm space-y-6">
+          <input type="hidden" name="access_key" value={process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY} />
+          <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-xs font-bold uppercase text-[#2D2A22] mb-2">Your Name</label>
+              <input 
+                type="text" 
+                name="name" 
+                required 
+                placeholder="John Doe"
+                className="w-full px-4 py-3 rounded-xl border border-[#EFECE3] bg-[#FAF6EC]/30 text-sm focus:outline-none focus:border-[#C19A5B] transition-colors"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase text-[#2D2A22] mb-2">Email Address</label>
+              <input 
+                type="email" 
+                name="email" 
+                required 
+                placeholder="john@example.com"
+                className="w-full px-4 py-3 rounded-xl border border-[#EFECE3] bg-[#FAF6EC]/30 text-sm focus:outline-none focus:border-[#C19A5B] transition-colors"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold uppercase text-[#2D2A22] mb-2">Subject / Tour Plan</label>
+            <input 
+              type="text" 
+              name="subject" 
+              required 
+              placeholder="Booking request for 5 days multi-day tour"
+              className="w-full px-4 py-3 rounded-xl border border-[#EFECE3] bg-[#FAF6EC]/30 text-sm focus:outline-none focus:border-[#C19A5B] transition-colors"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold uppercase text-[#2D2A22] mb-2">Your Message</label>
+            <textarea 
+              name="message" 
+              required 
+              rows="4"
+              placeholder="Tell us your travel dates, number of passengers, and places you want to visit..."
+              className="w-full px-4 py-3 rounded-xl border border-[#EFECE3] bg-[#FAF6EC]/30 text-sm focus:outline-none focus:border-[#C19A5B] transition-colors resize-none"
+            ></textarea>
+          </div>
+
+          {submitResult.success !== null && (
+            <div className={`p-4 rounded-xl text-sm font-semibold ${submitResult.success ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-red-50 text-red-700 border border-red-200'}`}>
+              {submitResult.message}
+            </div>
+          )}
+
+          <button 
+            type="submit" 
+            disabled={isSubmitting}
+            className="w-full bg-[#C19A5B] hover:bg-[#A88144] disabled:bg-gray-400 text-white font-bold py-3.5 rounded-xl text-sm transition-colors uppercase tracking-wider shadow-sm"
+          >
+            {isSubmitting ? "Sending Message..." : "Send Message ➔"}
+          </button>
+        </form>
+      </div>
+
       {/* Footer Section */}
       <footer id="contact" className="bg-[#1A1813] text-[#FDFCF7] py-12 border-t border-[#ECECE3]/10">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -279,7 +413,7 @@ export default function Home() {
             <p className="text-sm text-gray-400 leading-relaxed">
               Trusted private chauffeur drives based in{" "}
               <a 
-                href="https://maps.google.com" 
+                href="#" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-[#C19A5B] hover:underline inline-flex items-center gap-1"

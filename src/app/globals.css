@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+/* Grammarly Desktop App widget එක සහ inline icons බලෙන්ම හංගන්න */
+grammarly-desktop-integration,
+grammarly-extension,
+[data-gr-ext-installed],
+div[class*="grammarly"],
+.grammarly-root {
+  display: none !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+}
