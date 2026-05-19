@@ -177,7 +177,7 @@ export default function Home() {
       {/* Hero Section */}
       <div id="home" className="relative w-full min-h-[85vh] flex flex-col justify-between overflow-hidden bg-[#1A1512]">
         <Image
-          src="/sigiriya-cover.jpg" 
+          src="/sigiriya.jpg" 
           alt="Honeyland Tours Background"
           fill
           priority
