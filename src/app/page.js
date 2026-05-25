@@ -311,7 +311,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* NEW UPDATED SECTION: Honey Land Tours Guests Gallery */}
+      {/* NEW UPDATED SECTION: Honey Land Tours Guests Gallery (Description removed, size reduced) */}
       <div id="gallery" className="max-w-6xl mx-auto py-16 px-6 scroll-mt-20 border-t border-[#EFECE3]">
         <div className="text-center mb-12">
           <span className="text-[#C19A5B] text-xs font-bold uppercase tracking-widest block mb-2">Memories With Our Guests</span>
@@ -319,13 +319,13 @@ export default function Home() {
           <div className="w-12 h-0.5 bg-[#C19A5B] mx-auto mb-4"></div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {honeyGallery.map((photo) => (
             <div 
               key={photo.id} 
-              className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md border border-[#EFECE3] transition-all duration-300 bg-white p-2.5"
+              className="group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-md border border-[#EFECE3] transition-all duration-300 bg-white p-1.5"
             >
-              <div className="relative h-64 w-full overflow-hidden rounded-xl bg-gray-100">
+              <div className="relative h-56 w-full overflow-hidden rounded-xl bg-gray-100">
                 <Image 
                   src={photo.src} 
                   alt={photo.alt}
@@ -333,11 +333,6 @@ export default function Home() {
                   sizes="(max-w-768px) 100vw, 33vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out"
                 />
-              </div>
-              <div className="pt-3 px-1">
-                <p className="text-xs font-medium text-[#666053] italic">
-                  {photo.alt}
-                </p>
               </div>
             </div>
           ))}
