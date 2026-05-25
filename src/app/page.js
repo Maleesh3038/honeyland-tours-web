@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import Link from 'with/link'; // Note: inline with Next.js standards, usually 'next/link' but keeping consistency
+import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Home() {
