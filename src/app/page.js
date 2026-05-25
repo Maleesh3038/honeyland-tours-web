@@ -379,7 +379,8 @@ export default function Home() {
         </div>
 
         <form onSubmit={handleFormSubmit} className="bg-white p-8 rounded-2xl border border-[#EFECE3] shadow-sm space-y-6">
-          <input type="hidden" name="access_key" value={process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY} />
+          {/* Web3Forms Access Key Fixed with Quotes */}
+          <input type="hidden" name="access_key" value="67510ec7-134c-492e-ae15-ea392d118b75" />
           <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
           
           {/* Web3Forms Routing: Emails will be routed directly to Mama's email */}
