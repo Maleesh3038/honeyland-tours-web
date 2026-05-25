@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import Link from 'next/link';
+import Link from 'with/link'; // Note: inline with Next.js standards, usually 'next/link' but keeping consistency
 import Image from 'next/image';
 
 export default function Home() {
@@ -103,11 +103,15 @@ export default function Home() {
     }
   ];
 
-  // Honey Land Tours Guests Gallery Data
+  // Honey Land Tours Guests Gallery Data (Updated to .jpeg match files)
   const honeyGallery = [
-    { id: 1, src: "/honey-gallery/tourist-1.jpg", alt: "Tourists enjoying the safari with Honey Land" },
-    { id: 2, src: "/honey-gallery/tourist-2.jpg", alt: "Beautiful moments exploring ancient majesty" },
-    { id: 3, src: "/honey-gallery/tourist-3.jpg", alt: "Happy clients exploring Sri Lanka waterfalls" },
+    { id: 1, src: "/honey-gallery/tourist-1.jpeg", alt: "Tourists enjoying the safari with Honey Land" },
+    { id: 2, src: "/honey-gallery/tourist-2.jpeg", alt: "Beautiful moments exploring ancient majesty" },
+    { id: 3, src: "/honey-gallery/tourist-3.jpeg", alt: "Happy clients exploring Sri Lanka waterfalls" },
+    { id: 4, src: "/honey-gallery/tourist-4.jpeg", alt: "Honey Land Tours guest memories" },
+    { id: 5, src: "/honey-gallery/tourist-5.jpeg", alt: "Exploring cultural heritage sites" },
+    { id: 6, src: "/honey-gallery/tourist-6.jpeg", alt: "Wonderful group tour experience" },
+    { id: 7, src: "/honey-gallery/tourist-7.jpeg", alt: "Scenic view with our beautiful guests" },
   ];
 
   const reviews = [
@@ -311,7 +315,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* NEW UPDATED SECTION: Honey Land Tours Guests Gallery (Description removed, size reduced) */}
+      {/* Honey Land Tours Guests Gallery (Description removed, size & padding reduced, correct .jpeg extension mapped) */}
       <div id="gallery" className="max-w-6xl mx-auto py-16 px-6 scroll-mt-20 border-t border-[#EFECE3]">
         <div className="text-center mb-12">
           <span className="text-[#C19A5B] text-xs font-bold uppercase tracking-widest block mb-2">Memories With Our Guests</span>
