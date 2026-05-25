@@ -315,7 +315,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Honey Land Tours Guests Gallery (Description removed, size & padding reduced, correct .jpeg extension mapped) */}
+      {/* Honey Land Tours Guests Gallery */}
       <div id="gallery" className="max-w-6xl mx-auto py-16 px-6 scroll-mt-20 border-t border-[#EFECE3]">
         <div className="text-center mb-12">
           <span className="text-[#C19A5B] text-xs font-bold uppercase tracking-widest block mb-2">Memories With Our Guests</span>
@@ -381,6 +381,9 @@ export default function Home() {
         <form onSubmit={handleFormSubmit} className="bg-white p-8 rounded-2xl border border-[#EFECE3] shadow-sm space-y-6">
           <input type="hidden" name="access_key" value={process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY} />
           <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+          
+          {/* Web3Forms Routing: Emails will be routed directly to Mama's email */}
+          <input type="hidden" name="to_email" value="mama@email.com" />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
