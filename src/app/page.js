@@ -280,6 +280,61 @@ export default function Home() {
         </div>
       </div>
 
+      {/* WHY CHOOSE US SECTION */}
+      <section className="bg-[#FAF6EC]/60 text-[#2D2A22] py-20 px-6 border-b border-[#EFECE3]">
+        <div className="max-w-6xl mx-auto text-center">
+          
+          {/* Section Title */}
+          <span className="text-[#C19A5B] text-xs uppercase tracking-widest font-bold block mb-2">Why Travel With Us</span>
+          <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-wide text-[#2D2A22]">
+            Why Choose Honeyland Tours?
+          </h2>
+          <div className="w-12 h-0.5 bg-[#C19A5B] mx-auto mt-4 mb-4"></div>
+          <p className="text-[#666053] max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+            We love Sri Lanka, and we want to show you the best of our beautiful island. 
+            With us, your holiday will be safe, easy, and unforgettable.
+          </p>
+
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+            
+            {/* Feature 1 */}
+            <div className="p-6 bg-white rounded-2xl border border-[#EFECE3] shadow-sm hover:border-[#C19A5B]/50 transition-all text-center">
+              <div className="w-12 h-12 bg-[#C19A5B]/10 text-[#C19A5B] rounded-xl flex items-center justify-center text-2xl mx-auto mb-4">
+                🚗
+              </div>
+              <h3 className="font-bold text-lg text-[#2D2A22] mb-2">Safe & Private Rides</h3>
+              <p className="text-[#666053] text-sm leading-relaxed">
+                Travel comfortably in clean, air-conditioned luxury vehicles. Our friendly, experienced drivers ensure you always stay safe on the road.
+              </p>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="p-6 bg-white rounded-2xl border border-[#EFECE3] shadow-sm hover:border-[#C19A5B]/50 transition-all text-center">
+              <div className="w-12 h-12 bg-[#C19A5B]/10 text-[#C19A5B] rounded-xl flex items-center justify-center text-2xl mx-auto mb-4">
+                🗺️
+              </div>
+              <h3 className="font-bold text-lg text-[#2D2A22] mb-2">Custom Tour Packages</h3>
+              <p className="text-[#666053] text-sm leading-relaxed">
+                No rigid timelines. We help you design the perfect holiday match for your budget, whether you want beautiful beaches, wildlife, or historic temples.
+              </p>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="p-6 bg-white rounded-2xl border border-[#EFECE3] shadow-sm hover:border-[#C19A5B]/50 transition-all text-center">
+              <div className="w-12 h-12 bg-[#C19A5B]/10 text-[#C19A5B] rounded-xl flex items-center justify-center text-2xl mx-auto mb-4">
+                ⭐
+              </div>
+              <h3 className="font-bold text-lg text-[#2D2A22] mb-2">Best Local Experience</h3>
+              <p className="text-[#666053] text-sm leading-relaxed">
+                Discover hidden spots that regular tourists miss. We share local insights, secret view points, and authentic Sri Lankan food stops with you.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Experiences Cards Section */}
       <div id="destinations" className="max-w-6xl mx-auto py-20 px-6 scroll-mt-10">
         <div className="text-center mb-12">
@@ -457,17 +512,15 @@ export default function Home() {
           {/* COLUMN 1: About */}
           <div>
             <h3 className="text-[#C19A5B] font-bold text-lg mb-4 tracking-wider">HONEYLAND TOURS</h3>
-            <p className="text-sm text-gray-400 leading-relaxed">
+            <div className="text-sm text-gray-400 leading-relaxed">
               Trusted private chauffeur drives based in{" "}
               <a 
                 href="#" 
-                target="_blank" 
-                rel="noopener noreferrer"
                 className="text-[#C19A5B] hover:underline inline-flex items-center gap-1"
               >
                 Naula, Sri Lanka.
               </a>
-            </p>
+            </div>
           </div>
 
           {/* COLUMN 2: Contact Info */}
@@ -505,7 +558,7 @@ export default function Home() {
               </a>
 
               <a href="#" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#e1306c] transition-all">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204 013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204 0-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
               </a>
 
               <a href="#" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:bg-black transition-all">
